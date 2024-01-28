@@ -31,7 +31,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "daisnurfaizi\\bubuilder\\BubuilderServiceProvider"
+                "daisnurfaizi\\bubuilder\\BuilderServiceProvider"
             ]
         }
     }
