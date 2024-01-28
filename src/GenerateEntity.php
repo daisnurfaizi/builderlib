@@ -36,33 +36,38 @@ class GenerateEntity extends Command
             $this->error("The $modelClassName class does not exist in the app/Models directory!");
             return;
         }
+
+        // Dynamically create the model class path
         $modelFileName = Str::studly($modelClassName);
+        $modelClassNamespace = "App\\Models\\";
+        $modelClassPath = $modelClassNamespace . $modelFileName;
+
         // Include the model class file
-        $path = "App\\Models\\$modelFileName";
-        $model = new $path;
+        $model = new $modelClassPath;
 
         // Use Reflection to get the fillable attributes of the model
-
         $fillableAttributes = $model->getFillable();
 
-        $parts = explode('/', $modelClassName . 'Entity');
-        $entityName = end($parts);
-        $entityPath = app_path('Http/Entity/' . implode('/', array_slice($parts, 0, -1)));
+        // Generate entity path and name
+        $entityParts = explode('/', $modelClassName . 'Entity');
+        $entityName = end($entityParts);
+        $entityPath = app_path('Http/Entity/' . implode('/', array_slice($entityParts, 0, -1)));
+
         $properties = '';
         $methods = '';
 
         foreach ($fillableAttributes as $attribute) {
             $properties .= "\tprivate \$$attribute;\n";
             $camelCase = ucfirst(Str::camel($attribute));
+
+            // getter method
             $methods .= "\n\t/**\n\t * Get the $attribute.\n\t *\n\t * @return mixed\n\t */\n\tpublic function get$camelCase()\n\t{\n\t\treturn \$this->$attribute;\n\t}\n\n";
-        }
-        // setter methods
-        foreach ($fillableAttributes as $attribute) {
-            $camelCase = ucfirst(Str::camel($attribute));
+
+            // setter method
             $methods .= "\n\t/**\n\t * Set the $attribute.\n\t *\n\t * @return mixed\n\t */\n\tpublic function set$camelCase(\$value)\n\t{\n\t\t\$this->$attribute = \$value;\n\t}\n\n";
         }
 
-        $classTemplate = "<?php\n\nnamespace App\Http\Entity" . implode('\\', array_slice($parts, 0, -1)) . ";\n\nclass $entityName\n{\n$properties\n\t// Constructor\n\tpublic function __construct(" . implode(', ', array_map(function ($attr) {
+        $classTemplate = "<?php\n\nnamespace App\Http\Entity" . implode('\\', array_slice($entityParts, 0, -1)) . ";\n\nclass $entityName\n{\n$properties\n\t// Constructor\n\tpublic function __construct(" . implode(', ', array_map(function ($attr) {
             return "\$$attr";
         }, $fillableAttributes)) . ")\n\t{\n" . implode("\n", array_map(function ($attr) {
             return "\t\t\$this->$attr = \$$attr;";
