@@ -29,8 +29,6 @@ class GenerateEntity extends Command
     {
         // Get the model class name from the command argument
         $modelClassName = $this->argument('model');
-        $modelPath = explode('/', $modelClassName);
-        $modelClassName = end($modelPath);
         $modelClassPath = app_path('Models/' . $modelClassName . '.php');
 
         // Check if the model class file exists
