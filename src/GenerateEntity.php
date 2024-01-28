@@ -29,7 +29,14 @@ class GenerateEntity extends Command
     {
         // Get the model class name from the command argument
         $modelClassName = $this->argument('model');
-        $modelClassPath = app_path('Models/' . $modelClassName . '.php');
+
+        // Extract namespace and class name
+        $modelParts = explode('\\', $modelClassName);
+        $modelName = end($modelParts);
+        $modelNamespace = implode('\\', array_slice($modelParts, 0, -1));
+        $modelClassPath = app_path('Models/' . implode('/', $modelParts) . '.php');
+
+
 
         // Check if the model class file exists
         if (!File::exists($modelClassPath)) {
@@ -38,12 +45,12 @@ class GenerateEntity extends Command
         }
 
         // Dynamically create the model class path
-        $modelFileName = Str::studly($modelClassName);
-        $modelClassNamespace = "App\\Models\\";
-        $modelClassPath = $modelClassNamespace . $modelFileName;
+        // $modelFileName = Str::studly($modelClassName);
+        // $modelClassNamespace = "App\\Models\\";
+        // $modelClassPath = $modelClassNamespace . $modelFileName;
 
         // Include the model class file
-        $model = new $modelClassPath;
+        $model = new $modelClassName;
 
         // Use Reflection to get the fillable attributes of the model
         $fillableAttributes = $model->getFillable();
