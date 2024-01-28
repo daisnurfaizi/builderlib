@@ -1,6 +1,6 @@
 <?
 
-namespace Daisnurfaizi\Builder;
+namespace daisnurfaizi\bubuilder;
 
 use Illuminate\Support\ServiceProvider;
 
