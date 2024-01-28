@@ -31,9 +31,10 @@ class GenerateEntity extends Command
         $modelClassName = $this->argument('model');
 
         // Extract namespace and class name
-        $modelParts = explode('\\', $modelClassName);
+        $modelParts = explode('/', $modelClassName);
         $modelName = end($modelParts);
         $modelNamespace = implode('\\', array_slice($modelParts, 0, -1));
+
 
         // Construct the model class path
         $modelClassPath = app_path('Models/' . str_replace('\\', '/', $modelNamespace) . '/' . $modelName . '.php');
@@ -46,9 +47,10 @@ class GenerateEntity extends Command
 
 
         // Dynamically create the model class path
-        $fullModelClassPath = "App\\Models\\" . str_replace('/', '\\', $modelNamespace) . '\\' . $modelName;
-        dd($fullModelClassPath);
-        exit;
+        // dd($modelNamespace);
+        $fullModelClassPath = "App\\Models\\" . str_replace('/', '', $modelNamespace) . '\\' . $modelName;
+        // dd($fullModelClassPath);
+        // exit;
         // Include the model class file
         $model = new $fullModelClassPath;
 
