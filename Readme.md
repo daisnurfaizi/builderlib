@@ -14,7 +14,7 @@ composer require daisnurfaizi/bubuilder
 
 anda dapat menggunakan library ini dengan cara sebagai berikut:
 
-`php artisan create:entity nama-model`
+`bash php artisan create:entity nama-model`
 
 untuk membuat entity
 
