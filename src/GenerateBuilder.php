@@ -32,21 +32,22 @@ class GenerateBuilder extends Command
         // Get the entity class name from the command argument
         $entityClassName = $this->argument('entity');
 
+        // Extract namespace and class name
+        $entityParts = explode('/', $entityClassName);
+        $entityName = end($entityParts);
+        $entityNamespace = implode('\\', array_slice($entityParts, 0, -1));
         // Check if the entity class file exists
-        $entityFileName = Str::studly($entityClassName);
-        $entityClassPath = app_path("Http/Entity/{$entityFileName}.php");
+        $entityClassPath = app_path('Http/Entity/' . str_replace('\\', '/', $entityNamespace) . '/' . $entityName . '.php');
 
-        if (!File::exists($entityClassPath)) {
-            $this->error("The $entityFileName class does not exist in the app/Http/Entity directory!");
+        if (!file_exists($entityClassPath)) {
+            $this->error("The $entityClassPath class does not exist in the app/Models directory!");
             return;
         }
-
         // Include the entity class file
-        require_once $entityClassPath;
-        $entityNamespace = "App\\Http\\Entity\\$entityFileName";
-
+        // require_once $entityClassPath;
+        $fullModelClassPath = "App\\Http\\Entity\\" . str_replace('/', '', $entityNamespace) . '\\' . $entityName;
         // Use Reflection to get the fillable attributes of the entity
-        $reflectionClass = new ReflectionClass($entityNamespace);
+        $reflectionClass = new ReflectionClass($fullModelClassPath);
         $fillableAttributes = $reflectionClass->getProperties(ReflectionProperty::IS_PRIVATE);
         $parts = explode('/', $entityClassName);
         $builderName = end($parts) . 'Builder';
@@ -62,17 +63,14 @@ class GenerateBuilder extends Command
         }
 
         // Create the builder class file
-        // Create the builder class file
-        // Create the builder class file
-        // Create the builder class file
-        $classTemplate = "<?php\n\nnamespace App\\Http\\Builder" . implode('\\', array_slice($parts, 0, -1)) . ";\n\nclass $builderName\n{\n$properties\n$methods\t// Other necessary methods...\n\n\t/**
+        $classTemplate = "<?php\n\nnamespace App\\Http\\Builder\\" . implode('\\', array_slice($parts, 0, -1)) . ";\nuse $fullModelClassPath;\n\nclass $builderName\n{\n$properties\n$methods\t// Other necessary methods...\n\n\t/**
     \t * Build an instance of the entity with the values set in the builder.
     \t *
-    \t * @return \\$entityNamespace
+    \t * @return $entityName
     \t */
     \tpublic function build()
     \t{
-    \t\treturn new \\$entityNamespace(\n";
+    \t\treturn new $entityName(\n";
 
         foreach ($fillableAttributes as $attribute) {
             $propertyName = $attribute->getName();

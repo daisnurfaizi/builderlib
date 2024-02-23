@@ -1,6 +1,6 @@
 # Bubuilder
 
-Bubuilder adalah library untuk membuat entity dan builder pattern berdasarkan model database di Laravel.
+Bubuilder adalah package untuk membuat entity dan builder pattern berdasarkan model database di Laravel.
 
 ## Instalasi
 
@@ -12,7 +12,7 @@ composer require daisnurfaizi/bubuilder
 
 ## Penggunaan
 
-anda dapat menggunakan library ini dengan cara sebagai berikut:
+anda dapat menggunakan package ini dengan cara sebagai berikut:
 
 `bash php artisan create:entity nama-model`
 

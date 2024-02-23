@@ -45,12 +45,8 @@ class GenerateEntity extends Command
             return;
         }
 
-
         // Dynamically create the model class path
-        // dd($modelNamespace);
         $fullModelClassPath = "App\\Models\\" . str_replace('/', '', $modelNamespace) . '\\' . $modelName;
-        // dd($fullModelClassPath);
-        // exit;
         // Include the model class file
         $model = new $fullModelClassPath;
 
