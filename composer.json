@@ -5,12 +5,12 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "bubuilder\\": "src/"
+            "daisnurfaizi\\bubuilder\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "bubuilder\\": "src/"
+            "daisnurfaizi\\bubuilder\\": "src/"
         }
     },
     "authors": [
