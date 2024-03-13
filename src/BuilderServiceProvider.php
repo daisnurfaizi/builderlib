@@ -1,9 +1,9 @@
 <?
 
-namespace daisnurfaizi;
+namespace bubuilder;
 
-use daisnurfaizi\bubuilder\GenerateBuilder;
-use daisnurfaizi\bubuilder\GenerateEntity;
+use bubuilder\GenerateBuilder;
+use bubuilder\GenerateEntity;
 use Illuminate\Support\ServiceProvider;
 
 

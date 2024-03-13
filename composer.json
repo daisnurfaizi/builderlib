@@ -5,7 +5,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "daisnurfaizi\\bubuilder\\": "src/"
+            "bubuilder\\": "src/"
         }
     },
     "scripts": {
@@ -20,7 +20,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "daisnurfaizi\\bubuilder\\BuilderServiceProvider"
+                "bubuilder\\BuilderServiceProvider"
             ]
         }
     },
