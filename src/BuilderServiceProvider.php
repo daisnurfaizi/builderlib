@@ -1,10 +1,10 @@
 <?
 
-namespace daisnurfaizi\bubuilder;
+namespace daisnurfaizi;
 
-use Illuminate\Support\ServiceProvider;
-use daisnurfaizi\bubuilder\GenerateEntity;
 use daisnurfaizi\bubuilder\GenerateBuilder;
+use daisnurfaizi\bubuilder\GenerateEntity;
+use Illuminate\Support\ServiceProvider;
 
 
 class BuilderServiceProvider extends ServiceProvider
