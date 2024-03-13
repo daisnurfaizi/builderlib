@@ -5,9 +5,20 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "bubuilder\\": "src/"
+            "daisnurfaizi\\bubuilder\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "daisnurfaizi\\bubuilder\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "daisnurfaizi",
+            "email": "dsnurfaizi@gmail.com"
+        }
+    ],
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
@@ -20,14 +31,9 @@
     "extra": {
         "laravel": {
             "providers": [
-                "bubuilder\\BuilderServiceProvider"
+                "daisnurfaizi\\bubuilder\\BuilderServiceProvider"
             ]
         }
-    },
-    "authors": [
-        {
-            "name": "daisnurfaizi",
-            "email": "dsnurfaizi@gmail.com"
-        }
-    ]
+    }
+    
 }
