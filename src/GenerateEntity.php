@@ -84,7 +84,7 @@ class GenerateEntity extends Command
 
         File::ensureDirectoryExists($entityPath);
         File::put($entityPath . '/' . $entityName . '.php', $classTemplate);
-
+        // info message
         $this->info("$entityName class generated successfully!");
     }
 }

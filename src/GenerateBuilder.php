@@ -86,7 +86,7 @@ class GenerateBuilder extends Command
         // Check if the builder class file already exists
         File::ensureDirectoryExists($builderPath);
         File::put($builderPath . '/' . $builderName . '.php', $classTemplate);
-
+        // info message
         $this->info("The $builderName class has been generated in the app/Http/Builder directory!");
     }
 }

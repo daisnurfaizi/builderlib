@@ -1,6 +1,6 @@
 {
     "name": "daisnurfaizi/bubuilder",
-    "description": "Membuat entity dan bulder pattern berdasarkan model database",
+    "description": "Membuat entity dan bulder pattern berdasarkan model dari database",
     "type": "library",
     "license": "MIT",
     "autoload": {

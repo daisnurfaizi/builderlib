@@ -11,7 +11,7 @@ class BuilderServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        // Boot logic, if needed
+        // Boot logic, if needed here
     }
 
     public function register()
