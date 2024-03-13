@@ -1,6 +1,6 @@
 <?php
 
-namespace bubuilder;
+namespace daisnurfaizi\bubuilder;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
