@@ -45,8 +45,12 @@ class GenerateEntity extends Command
             return;
         }
 
+
         // Dynamically create the model class path
+        // dd($modelNamespace);
         $fullModelClassPath = "App\\Models\\" . str_replace('/', '', $modelNamespace) . '\\' . $modelName;
+        // dd($fullModelClassPath);
+        // exit;
         // Include the model class file
         $model = new $fullModelClassPath;
 
@@ -72,7 +76,7 @@ class GenerateEntity extends Command
             $methods .= "\n\t/**\n\t * Set the $attribute.\n\t *\n\t * @return mixed\n\t */\n\tpublic function set$camelCase(\$value)\n\t{\n\t\t\$this->$attribute = \$value;\n\t}\n\n";
         }
 
-        $classTemplate = "<?php\n\nnamespace App\Http\Entity" . implode('\\', array_slice($entityParts, 0, -1)) . ";\n\nclass $entityName\n{\n$properties\n\t// Constructor\n\tpublic function __construct(" . implode(', ', array_map(function ($attr) {
+        $classTemplate = "<?php\n\nnamespace App\Http\Entity\\" . implode('\\', array_slice($entityParts, 0, -1)) . ";\n\nclass $entityName\n{\n$properties\n\t// Constructor\n\tpublic function __construct(" . implode(', ', array_map(function ($attr) {
             return "\$$attr";
         }, $fillableAttributes)) . ")\n\t{\n" . implode("\n", array_map(function ($attr) {
             return "\t\t\$this->$attr = \$$attr;";

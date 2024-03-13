@@ -46,6 +46,7 @@ class GenerateBuilder extends Command
         // Include the entity class file
         // require_once $entityClassPath;
         $fullModelClassPath = "App\\Http\\Entity\\" . str_replace('/', '', $entityNamespace) . '\\' . $entityName;
+        // dd($fullModelClassPath);
         // Use Reflection to get the fillable attributes of the entity
         $reflectionClass = new ReflectionClass($fullModelClassPath);
         $fillableAttributes = $reflectionClass->getProperties(ReflectionProperty::IS_PRIVATE);
