@@ -8,17 +8,6 @@
             "daisnurfaizi\\bubuilder\\": "src/"
         }
     },
-    "autoload-dev": {
-        "psr-4": {
-            "daisnurfaizi\\bubuilder\\": "src/"
-        }
-    },
-    "authors": [
-        {
-            "name": "daisnurfaizi",
-            "email": "dsnurfaizi@gmail.com"
-        }
-    ],
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
@@ -34,6 +23,11 @@
                 "daisnurfaizi\\bubuilder\\BuilderServiceProvider"
             ]
         }
-    }
-    
+    },
+    "authors": [
+        {
+            "name": "daisnurfaizi",
+            "email": "dsnurfaizi@gmail.com"
+        }
+    ]
 }
