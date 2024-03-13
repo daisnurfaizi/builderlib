@@ -1,6 +1,6 @@
 <?
 
-namespace daisnurfaizi\bubuilder;
+namespace bubuilder;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
